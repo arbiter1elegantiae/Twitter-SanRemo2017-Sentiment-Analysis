@@ -2,6 +2,11 @@ import pandas as pd
 import preprocessor as p
 import numpy as np
 import sys
+import unicodedata
+from unidecode import unidecode 
+from emoji.unicode_codes import UNICODE_EMOJI
+
+
 
 # FIRST FILTER PHASE
 # this script cleans data from sanremo-*-.tsv keeping just usefull attributes and properly formatting tweet's text:
@@ -24,11 +29,16 @@ def process(df):
     for row in df.itertuples():
         i+=1
         if row[4] == 'no':
-
+            test_string = demojify(row[2])
+            #DA SISTEMARE, RIMPIAZZARE LE TEST_STRING CON IL TESTO DENTRO IL DATAFRAME
+            newDf.replace(row[2], test_string)
             newDf.loc[row[1]] = [p.clean(row[2].lower()), row[3], row[4]]
+            print('' + test_string)
         printProgress(i)
-        
-    newDf.to_csv('./cleanedData.csv')
+
+    print(newDf)    
+   commented for testing
+   #newDf.to_csv('./cleanedData.csv')
 
 def printProgress(count):
     #print a progress bar on stdout (this way an user wouldnt suspect a loop) 
@@ -36,5 +46,26 @@ def printProgress(count):
     sys.stdout.write("[%-50s] %d%%" % ('='*int(((count*50)/nrows)), int((count*100)/nrows)))
     sys.stdout.flush()
     
+
+def demojify(txt):
+    returnString = ""
+
+    for character in txt:
+        try:
+            character.encode("ascii")
+            returnString += character
+        except UnicodeEncodeError:
+            replaced = unidecode(str(character))
+            if replaced != '':
+                returnString += replaced
+            else: 
+                try:
+                    returnString += "[" + unicodedata.name(character) + "]"
+                except ValueError:
+                    returnString += "[x]"
+    return returnString
+
+
 df = pd.read_table('sanremo-2017-0.1.tsv',names=f_names,usecols=fields,header=None,dtype={fields[0]:'object', fields[1]:'object', fields[2]:'object', fields[3]:'object'})
 process(df)
+
