@@ -3,6 +3,8 @@ import preprocessor as p
 import numpy as np
 import sys
 import unicodedata
+import string
+import re
 from unidecode import unidecode 
 from emoji.unicode_codes import UNICODE_EMOJI
 
@@ -10,7 +12,9 @@ from emoji.unicode_codes import UNICODE_EMOJI
 
 # FIRST FILTER PHASE
 # this script cleans data from sanremo-*-.tsv keeping just usefull attributes and properly formatting tweet's text:
-# captions, urls and hashtags are filtered out thanks to tweet preprocessor lib (http://preprocessor.readthedocs.org/). also, retweetted aren't considered beacuse of redundancy and the text is put in lowercase. 
+# captions, urls and hashtags are filtered out thanks to tweet preprocessor lib (http://preprocessor.readthedocs.org/). also, retweetted aren't considered beacuse of redundancy and the text is put in lowercase.
+# emoji are translated in words
+# punctuation removed 
 # pandas allows efficient handling for big (120mb) datasets
 # 'fields' array contains the main features to carry on sentiment analysis 
 
@@ -23,22 +27,18 @@ nrows= 213824
 
 def process(df):
     
-    newDf = pd.DataFrame(columns=fields[1:])
+    newDf = pd.DataFrame(columns=fields[1:3]+['emoji'])
     i = 0
 
     for row in df.itertuples():
         i+=1
         if row[4] == 'no':
-            test_string = demojify(row[2])
-            #DA SISTEMARE, RIMPIAZZARE LE TEST_STRING CON IL TESTO DENTRO IL DATAFRAME
-            newDf.replace(row[2], test_string)
-            newDf.loc[row[1]] = [p.clean(row[2].lower()), row[3], row[4]]
-            print('' + test_string)
-        printProgress(i)
+            cleanText = clean(row[2])
+            newDf.loc[row[1]] = [cleanText, row[3],emojiFind(row[2])]
+            
+      #  printProgress(i)
 
-    print(newDf)    
-   commented for testing
-   #newDf.to_csv('./cleanedData.csv')
+    newDf.to_csv('./cleanedData.csv')
 
 def printProgress(count):
     #print a progress bar on stdout (this way an user wouldnt suspect a loop) 
@@ -47,6 +47,24 @@ def printProgress(count):
     sys.stdout.flush()
     
 
+#return the list of emoji presents in the tweet
+def emojiFind(txt):
+    returnList = []
+
+    for character in txt:
+        try:
+            character.encode("ascii")
+        except UnicodeEncodeError:
+            replaced = unidecode(str(character))
+            if replaced == '':
+                try:
+                    returnList += [unicodedata.name(character)]
+                except ValueError:
+                    returnList += ['x']
+    print(returnList)                    
+    return returnList
+
+#remo emoji from tweet
 def demojify(txt):
     returnString = ""
 
@@ -60,12 +78,22 @@ def demojify(txt):
                 returnString += replaced
             else: 
                 try:
-                    returnString += "[" + unicodedata.name(character) + "]"
+                    returnString = returnString
                 except ValueError:
-                    returnString += "[x]"
+                    returnString += '[x]'
     return returnString
 
+#remove punctuation
+def removePunc(txt):
+    regex = re.compile('[%s]' % re.escape(string.punctuation))
+    return regex.sub('', txt)
 
-df = pd.read_table('sanremo-2017-0.1.tsv',names=f_names,usecols=fields,header=None,dtype={fields[0]:'object', fields[1]:'object', fields[2]:'object', fields[3]:'object'})
+#def remove
+
+
+def clean(txt):
+    return removePunc(p.clean(demojify(txt)).lower())
+
+df = pd.read_table('sanremo-2017-0.1.tsv',names=f_names,usecols=fields,header=None,dtype={fields[0]:'object', fields[1]:'object', fields[2]:'object', fields[3]:'object'},nrows=1000)
 process(df)
 
