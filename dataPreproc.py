@@ -1,3 +1,4 @@
+from __future__ import print_function
 import pandas as pd
 import preprocessor as p
 import numpy as np
@@ -10,7 +11,8 @@ import requests
 from unidecode import unidecode 
 from emoji.unicode_codes import UNICODE_EMOJI
 from lxml import html
-
+from nltk import stem
+from nltk.stem.snowball import SnowballStemmer
 
 # ----TWEET'S TEXT PREPROCESSING ( 1st PHASE )----
 #
@@ -63,6 +65,8 @@ emoticons = \
 # |records| from original dataset
 nrows= 213823
 
+# object stemmer for the stemmatization 
+stemmer = SnowballStemmer("italian")
 
 
 def process(df):
@@ -134,7 +138,7 @@ def emojiFind(txt):
 
 
 def demojify(txt):
-    #remove emoji from tweet
+    # remove emoji from tweet
     returnString = ""
 
     for character in txt:
@@ -156,30 +160,32 @@ def demojify(txt):
 
 
 def removePunc(txt):
-    #remove punctuation
+    # remove punctuation
     return ''.join([word.strip(string.punctuation)+' ' for word in txt.split(" ")])
 
 
 
 def replaceTwOrMore(txt):
-    #look for 2 or more repetitions of character and replace with the character itself
+    # look for 2 or more repetitions of character and replace with the character itself
     pattern = re.compile(r"(.)\1{1,}", re.DOTALL)
     return pattern.sub(r"\1\1", txt)
 
 
 
 def removeAddSpace(txt):
-    #Remove additional white spaces
+    # Remove additional white spaces
     return re.sub('[\s]+', ' ', txt)
 
 
 
 def removeStopWords(txt):
+    # remove stop words taken from the json file
     return ''.join([word+' ' for word in txt.split() if word not in stopWordSet])
 
 
 
 def removeNumbers(txt):
+    # remove all the numbers 
     resulTxt=''
     for word in txt:
         resulTxt+=''.join([i for i in word if not i.isdigit()])
@@ -188,16 +194,22 @@ def removeNumbers(txt):
 
 
 def removeOneorTwo(txt):
-    #remove every one-two characters word
+    # remove every one-two characters word
     return ''.join([word+' ' for word in txt.split() if len(word)>2 ])
 
 
 
 def clean(txt):
-    #apply all previous defined filters
-    return removeAddSpace(removeOneorTwo(removeStopWords(removeNumbers((replaceTwOrMore(removePunc(p.clean(demojify(txt))).lower()))))))
+    # apply all previous defined filters
+    return stemmatize(removeAddSpace(removeOneorTwo(removeStopWords(removeNumbers((replaceTwOrMore(removePunc(p.clean(demojify(txt))).lower())))))))
 
 
+def stemmatize(txt):
+    
+    returnString = ""
+    for word in txt.split():
+        returnString += stemmer.stem(word) + " "
+    return returnString
 
 def classifyEmoji():
     # get emoji's sentiment classification from P. Kralj Novak, J. Smailovic, B. Sluban, I. Mozetic : Sentiment of Emojis
