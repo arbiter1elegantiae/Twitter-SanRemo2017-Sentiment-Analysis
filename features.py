@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
 from nltk import stem
 from nltk.stem.snowball import SnowballStemmer
@@ -61,7 +62,7 @@ def buildPosPolarityFeat(df, dfPos):
 
 
 def buildEmojiPolarity(df):
-    emoji=[]
+    emojiColumn=[]
 
     for tweet in df.itertuples(index=False):
         
@@ -74,9 +75,9 @@ def buildEmojiPolarity(df):
                 emojiPolarity-=1
         
         print('EMOFeature'+str(tweet[0])+'-->'+str(int(2 * round(float(emojiPolarity)/2)))) #print work in progress        
-        emoji.append(int(2 * round(float(emojiPolarity)/2)))
+        emojiColumn.append(int(2 * round(float(emojiPolarity)/2)))
     
-    return np.array(emoji)
+    return np.array(emojiColumn)
 
 
 
