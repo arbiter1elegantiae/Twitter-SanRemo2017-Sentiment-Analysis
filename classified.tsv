@@ -1,0 +1,301 @@
+id,tweet_text,emoji,classification
+826126383214653440,pagin parl ,[],neutral
+826127813124247552,bell song ball tranquill ,[],positive 
+826131384024563714,mission elimin pregiudiz confront riuscir ,[] ,neutral
+826138111273029633,puo invit ospit interazional alessandr parl ,[] , neutral
+826140767718666241,sanrem scopert prov ,[] ,neutral 
+826144083970256896,guard classif ,[] ,neutral 
+826145184127791104,vogl festival ,['__EMOT_POS'] ,positive
+826327062386442240,traffic sguard met que sorris spent strad ,['__EMOT_POS'] ,positive
+826348778370248705,lett test test amo cont amor delud ,[] ,positive
+826751860761559041,pezz aiut ,['__EMOT_POS'] ,positive
+826753972304216070,test bran bellissim compl ,[] ,positive
+826759792253399041,canter innamor luig tenc ,[] ,positive
+826763958224818176,signor aiutam ,[] ,negative
+826766515882119169,edicol dedic ,[] ,neutral
+826773080223662081,ved l'or scopr look ,['__EMOT_POS'] ,positive
+826777657048178688,pres numer imperd ,['__EMOT_POS'] ,positive
+826782664191516672,manc pront ,"['__EMOT_POS', '__EMOT_NEUT']" ,neutral
+826789573330141184,pront andar bancarott ,['__EMOT_POS'] ,positive
+826791460011917312,emozion ved l'or ,['__EMOT_POS'] ,positive
+826791712030855168,abruzzes pront ,['__EMOT_POS'] ,positive
+826791819744772097,ferm punt ,[] ,negative
+826792429617561604,vorre occhi ,['__EMOT_POS'] ,positive
+826792564825137152,vorre fart ved vis com' camb rug graff ,[] ,neutral
+826794172053065728,guard amo serg endrig interpret aspett ,['__EMOT_POS'] ,positive
+826795382650847233,ver delud unico ,['__EMOT_POS'] ,positive
+826797678122000384,test magnif ,['__EMOT_POS'] ,positive
+826799582097072129,tiz ferr torn superosp omagg ,[] ,neutral
+826800098977914882,vorre occhi ,['__EMOT_POS'] ,positive
+826800962216067072,omagg luig tenc duett terz dat mil ,[] ,neutral
+826802260923523072,dire..tt dall'ariston story dire.it ,[] ,neutral
+826803643915595778,aspett ,['__EMOT_POS'] ,positive
+826808026992631810,keanu reeves vol mort ,[] ,neutral
+826809013404893184,fatec cant diritt palc ,[] ,neutral
+826810238804303872,me..sper ved prest ,[] ,positive
+826815534381555713,sal palc stra felic stra orgogl ,[] ,positive
+826815736005943296,pezz biancaatze gar l'av scritt l'ho ,[] ,negative
+826816114982273028,decan dell'ostetric anna pollacc nasc bambin conosc ,[] ,neutral
+826817045945864192,applaus personal artist fiorellamannoi rimess gioc rock ,[] ,positive
+826821652554072064,eta med big ,[] ,neutral
+826821921824264193,un'emozion camb ragion ,[] ,neutral
+826825389867687936,sfid tracc concorrent ,[] ,neutral
+826825802226491393,parl quiz festival canzon ,['__EMOT_NEUT'] ,neutral
+826829114338312192,mot guard ,[] ,positive
+826833135677616128,sap dirm sanrem gentil iniz procession spar fuoc ,[] ,neutral
+826836858541842432,amaregg polem compens ,[] ,negative 
+826838563367026690,festival sol ,[], neutral
+826843200790863872,"comunque,l canzon potr bellissim pront giudic disprezz ",[] ,positive 
+826844249362747394,ship ver amor ,['__EMOT_POS'] ,positive
+826847007616675840,legg pens immagin ved l'or ,['__EMOT_POS'] ,positive
+826848483172814849,patty gigliol cinguett tot cotugn quest'ann sanrem aggiung cert ludov comell ,[] ,neutral
+826852156787609601,divers miglior ,[] ,neutral
+826854828513120256,.eur period l'ital viv decis tropp ,[] ,negative
+826859163728957441,tiz ferr omagg tenc innamor ,[] ,neutral
+826859709756035093,vogl festival ,[] ,neutral
+826871728043335681,robert arman decid abit ser dic poss camb par incostituzional ,[], negative
+826874050412740610,innamor poss accett fatt cluster ,[] ,positive
+826875510756143105,conduzion dirig l'orchestr ,[], neutral
+826877932429643780,attes alien arriv cant terr promess delusion ,[], negative
+826878495154388994,bellissim microf ver cant ,[], neutral
+826881116758011905,rtt vol feder sciarell ,[], neutral
+826884102674579456,straordinar ,[], positive
+826885489991024649,esegu cappell ,[], neutral
+826886578748477440,inorrid centesim pass ,[], negative
+826887873987239936,vogl festival ,[], neutral
+826888202392858625,arriv tant tant interv vol legg l'imbarazz scelt ,[], neutral
+826890885845700609,doman scal punt bellissima-fiorissima ,['__EMOT_POS'], positive
+826898345348255744,marzian pubblic bell ,[], positive
+826912613892288515,sent sogn ritorn ,[], positive
+826914162924216322,bell pubblic padr pii d'or canterin ,[], positive
+826914990640738306,paol bonolis replic camb canal delus aspett ,[], neutral
+826917056260034560,l'esenzial marc mengon parol noem l'infern emma ,[], neutral
+826940616630214658,"pass frett va,no alziam volum cuore,regol ",[], positive
+826958844165242883,sent pensier ,[], positive
+827026748084723713,rai deb canon ,[], negative
+827043958589181953,buondayy friulana ved sanremo ,['__EMOT_POS'], positive
+827050052422074368,anestet d'effett ,[], negative
+827057142393872384,sper pass frett prossim settiman cosicc fin rott cazz aberr spot ,[], negative
+827060925098229760,mengon omagg tenc second fin tiz ferr business ,[], positive
+827065238465966080,ved palc ,['__EMOT_POS'], positive
+827067295159697409,mer centimetr palc mer sucess avra avra cred ,['__EMOT_POS'], positive
+827072223211040768,terribil ,['__EMOT_POS'], negative
+827084044198301696,buongiorno ,['__EMOT_POS'], positive
+827086461807820800,anton ,['__EMOT_POS'], positive
+827101121462288384,aspett abbin dedic eccol meravigl ,['__EMOT_POS'], positive
+827106632987443201,cool wallpaper cellul ,['__EMOT_POS'], neutral
+827107532061671424,pers l'interv elod eccol ,[], neutral
+827108554427428864,sanrem lungom sanrem ,[], negative
+827118257178046464,salvin carl cont cachet vergogn l'ha negr ,[], negative
+827123376519004161,fisc orecc ,[], negative
+827124259726249984,famigl anan prom gestant arriv l'ostetrica.quel legam strett ,[], negative
+827124781627670528,andat prov neslimusic alice_pab guard l'interv complet ,[], negative
+827133073485602816,ricord doman sapr tracklist ufficial album gioi nell'ar ,['__EMOT_POS'], negative
+827140645391319041,buon notiz iniz appen iniz smett ved spot ,[], negative
+827144325314273280,iniz post interv ,[], negative
+827145100807516160,sar stupid testard illus fragil onest ,['__EMOT_POS'], positive
+828637191685410817,star edizion ,[], positive
+828637359252058114,seguim segu doman avra iniz ,[], neutral
+828638047495397378,beib aai don nid doll bills fan toniit giur sanrem n'attim ,[], neutral
+828638584127225856,vabb augur gret menc capac competent giudic criter bell figur ,[], negative
+828645972695724039,programm cantant ospit ,[], neutral
+828645985454800897,fot vide interv ,[], neutral
+828646096771612672,cazz cont invit tott ide statal rub stipend vergognat ,[], negative
+828646228393095168,post dirett ospit ,[], neutral
+828646308172935169,ved l'or ascolt canzon fiorell mannoi amo donn artist straordinar ,[], positive
+828646343199571969,cerc original ,['__EMOT_NEG'], negative
+828646566139482113,ligur manc ,['__EMOT_POS'], positive
+828646736734384128,settiman sanremes ,['__EMOT_POS'], positive
+828647112539791364,furbett cartellin arriv furbett clik ,[], negative
+828647699138375680,twitter vend hashtag sanrem ,[], neutral
+828647739131043840,divert cub bran riusc star ferm div garant ,[], neutral
+828647882966388738,dir gret menc espert music bepp vessicc morir ,[], negative
+828647910204121088,prov scimmion ballerin ,[], neutral
+828648403080982528,gret menc giur espert music ,[], negative
+828648568999272449,aspettat scal tuff dirett palc ,[], neutral
+828648746565136384,ved moroder gret menc allib ,[], negative
+828648810943565828,sorpres prov big gabban ball sort king kong occidentali's karm tormenton ,[], negative
+828649102753820676,photocall self vide ,[], neutral
+828649248984010752,sap gret menc giur ,[], negative
+828649283306012672,prend doman second edizion sanremosol l'import ,[], neutral
+828649354453975041,l'umilt ermal met ,[] ,neutral
+828649583135879170,cominc mang ,[], neutral
+828649617927573504,robin schulz palc dell'ariston singl featuring david guett shed light ,[], neutral
+828649658155204608,fot vide interv ,[],neutral
+828650373137178625,gret menc pesc d'april febbrai ver ,[], negative
+828650488790937601,canzon festival lifeg rad ,['__EMOT_NEUT'], neutral
+828650550677876736,stup mar ,['__EMOT_POS'], positive
+828651052245344256,doman sab ser pront ,[], positive
+828651185406083073,conduttor direttor artist carcont qui ,['__EMOT_POS'], positive
+828651220386639876,gret menc giudic salvin all'accoglit migrant ,[], negative
+828651609525727232,c'ho l'ansiaanon aspett dall'ultim concert ,['__EMOT_POS'], positive
+828651980667158529,fatt bell ,[] ,positive
+828652050867224577,spacc lodo ,['__EMOT_NEUT'] ,positive
+828652254588710917,gran form marc pront conquist l'ariston ,[], positive
+828652315875954689,indovin estratt assol sal stamp andar ^ser festival andra ,[], neutral
+828652720068366341,aspett aspett gret menc giudic veng pres random ,[], negative
+828653184398852098,gret menc giur espert ,[], negative
+828653233660973056,gret menc giur qual ,[], negative
+828653307031846913,confert stamp nom nov programm ,[], neutral
+828653325327413249,viagg tramont meravigl ,[], positive
+828653408324300800,reservescrims claudiaguast guastifrancesc vitaindirett raiun sanremora ,[], neutral
+828653629183840257,gret menc far giur espert ,['__EMOT_POS'], negative
+828654015596617729,scherz degener ,[], negative
+828654363048546304,manc all'appunt music italian aspett ,[], neutral
+828654515071119360,meravigl ,[], positive
+828654565419515905,sent l'ar marian ,['__EMOT_POS'], positive
+828654707614834688,vist cors august mombell ,[], neutral
+828655026126065664,gret menc entrat far giur espert criter raccomand ,[], negative
+828655293584330753,spieg cos' simbol ross dell'hashtag ,[], neutral
+828655338278764546,aspett sanrem ,['__EMOT_POS'], positive
+828655609574744065,spieg san rem vinc miglior mett giur inespert gret menc ,['__EMOT_POS'], negative
+828655726075731969,gig unic felic aspett ,[], positive
+828655798897221632,segu gret menc giudic noo ,[], negative
+828655881365643264,music ospit divert all' febbrai ,[], neutral
+828656071480836099,accorg l'et avanz conosc cazz ,[], negative
+828656172534288384,gret menc far giur espert ,[], negative
+828656452051025920,gret menc barbar d'urs giornal ital ,[], negative
+828656531042340864,ugo mascott ,[], positive
+828656601020170240,filipp frastorn sent belen apre ,[],neutral
+828656978876518400,luned piov doman iniz sar becc ,[], neutral
+828657029694812160,scopr giudic gret ,[], negative
+828657165284024321,mar coccodrill c'e clip anteprim ,[], neutral
+828657375469064192,inizier doman present ,[], neutral
+828657474274258944,aspett keanu reeves ,[], positive
+828657545170518016,bocc lup much mierda nuov avventur ,['__EMOT_POS'], positive
+828657602733146112,bocc lup much mierda nuov avventur ,['__EMOT_POS'], positive
+828657764801064961,canzon assoc festival sanrem l'uom volant ,['__EMOT_POS'], positive
+828657797004984320,insult gret menc ved criter esperit mess espert ,[], negative
+828658155693473793,"much mierdaa,s orgogl ",['__EMOT_POS'], positive
+828658902405312514,ved hom infuoc gret menc giur fondamental gret menc ,[], negative
+828658940351221760,gret menc giur espert ,[], negative
+828659294400770048,cia cia bambin doman ,[], positive
+828659332082434049,sent degrad diffond nell'ar gret menc ,[], negative
+828659532289232897,festival iniz riesc star interv ,[], neutral
+828659898925846529,gret menc giur espert illuminatem preg l'ho ,[], negative
+828660030857736198,gret menc giur espert espert music ,[] ,negative
+828660092002246657,stup rikk marcuxx vad livell propost gret menc giur ,[] ,negative
+828660179751297025,c'e link ascolt comment qualsias tip accett ,[], neutral
+828660324857499649,somm regg dramm colleg trasmission improb opinion ,[], positive
+828660379312078849,gret menc giur ,[] ,negative
+828660506026196992,menc giudic espert ,[], negative
+828661109687205889,alelavital mar coccodrill sanremora c'e braschiofficial ,[], neutral
+828661656364400641,gret menc peggio..po dimagr ,[] ,negative
+828661688077582337,repubblicait alelavital vent min cag zer ,[], negative
+828661825818484736,,[] ,neutral
+828662011592634370,mar coccodrill acquerell fotogramm disc onest ,[], neutral
+828662042777251840,giur espert sanrem chiam espert ,[], negative
+828662187191365633,sent aspetter spettacol livell alto occhi punt v.tant vinc f.le ,[],positive
+828662562841587714,quint palc fot esclus ,[],neutral
+828662751283257344,agenzia_ans quint palc fot esclus ,[], neutral
+828662903318380544,filipp bassott vien immortal bisogn figuriamoc c'e spaz clementin ,[], neutral
+828663032335175680,com' star palc sanrem ,['__EMOT_POS'], neutral
+828663179005792257,gret menc giur espert qnd dic cap cucin mett formag ,[] ,negative
+828663218436452353,ballaton soul impatt vocal ,[], positive
+828663319456256000,esempl castor ,['__EMOT_POS'], positive
+828663369016233984,applaud ,[], positive
+828663428709482496,ved l'or ascolt mercoled ,['__EMOT_POS'], positive
+828663662881693699,"carr camp tenc a""l trattor tangenzial rovazz sic transit glor mund ",[], negative
+828663849742131200,rott cominc ,[],negative
+828664209894416384,,[], neutral
+828664570336202752,datem turc piazz ,[], negative
+828664603290828802,temp martin cap cominc vinc valer scanu ,[], negative
+828664707200454656,gret menc talment raccomand fin pales c'entr cazz ,[] ,negative
+828664780189745154,boh gret menc giur espert poss tranquill andar ball scal mil ,[] ,negative
+828664892152508422,guard ,[],negative
+828665167349182465,torn vedrem second ser mercoled ,['__EMOT_POS'], positive
+828665585873588225,sanrem official ,[], neutral
+828665618895364096,pod mannoia-sergione-gig prem critic ermal met ,[], positive
+828665818019885057,rifer idolatr piac ,[], neutral
+828665872214548484,chiss trash assurd vincer quest'ann ,[], negative
+828666168328220673,vincer ,[], neutral
+828666554422280193,pischell ,[], positive
+828667005343584256,cazz menc music ahahahah ovvi guarder sanrem quest'ann perd lol ,[], negative
+828667493988368386,sanrem tirator scelt giur qual ,[], negative
+828668186639888384,bandier rivol sangu orecc ,[], negative
+828668276075020288,vien tentazion condurr sed gradin sai l'abitudin ,[], negative
+828668584779988992,inciamp risc cad scal ,[], neutral
+828668637485596672,menc giudic andiam protest scus dov ,[], negative
+828668738056683520,chied l'ital funzion ,[], negative
+828668766640816129,gret menc sol gif marin sanrem festival ,[] ,negative
+828669242589454336,c'e gret menc c'e vessicc may intend ,[] ,negative
+828669267700805634,allarm bomb palafior dit attent giornal famos all'ariston ,[], neutral
+828669483925516292,viv sanrem red ronn ,[], positive
+828669536211697664,giur espert prem oscar dall'altr soffocon cul ,[], negative
+828670282550370304,bocc lup much mierda nuov avventur ,['__EMOT_POS'], positive
+828670308374683650,bocc lup much mierda nuov avventur ,['__EMOT_POS'], positive
+828670893014532096,schif prov ,[], negative
+828671054801489920,lel mett poc ansi ,['__EMOT_POS'], positive
+828671362017394688,"ved l'or doman ved cantare.s fier vada,t sosterr ",['__EMOT_POS'], positive
+828671850683183107,gret menc giur espert poss partecip concorrent vinc ,['__EMOT_POS'] ,negative
+828672112227471364,giudic stor ordinar foll ,[], negative
+828672187187990533,rag sapp cast aggiunt rovazz vol ,['__EMOT_POS'], negative
+828672368407171073,fiorell mannoi torn abit indosser palc ,[], neutral
+828672601425846272,,[], neutral
+828672682048835584,pens dovrest dar possibil ritrov giur qual ,[], negative
+828673248934100992,gret menc qual ricord cover cheap thrills brivid sudor fredd ,[] ,negative
+828673314574987264,presenz gret menc seppur insignific un'oltragg buon sens festival ,[] ,negative
+828673352785092610,doman boom registr ,[], neutral
+828673835201355776,giur ,['__EMOT_POS'], negative
+828674475428347906,pens playlist ,[], neutral
+828674521678880770,gret menc giur qual doman dell'ital ,[] ,negative
+828674794933645314,rott pall ,[], negative
+828675055659933697,staser c'e orma pensier ,[], positive
+828675414264541184,gret menc dimostr c'e speranz capac ,[] ,negative
+828675474612166656,sanrem festival event mostr tant music ,[], positive
+828675693080887296,doman iniz tim tim twitter ,['__EMOT_POS'], positive
+828676158724120586,ritorn festival sanrem ,[], neutral
+828676232992739328,signor quest'ann vallett ,[], positive
+828676315410739205,fin gret menc sanrem ,[] ,negative
+828676407958048769,cos' rob vogl cred ,[], negative
+828676491802198016,,[], neutral
+828676630226812928,fortun settiman avra fin romp cosiddett ,[], negative
+828676972091994118,pront tif ,['__EMOT_POS'], positive
+828677023182749696,bocc lup talentu ,['__EMOT_POS'], positive
+828677535324061697,red carpet punt serg sylvestr alto entra truck rad ,[], neutral
+828678018554089472,"chiaro,ad ser vogl sal sak ",[], neutral
+828678173843918848,uscit fot red carpet curiosa ,['__EMOT_POS'], positive
+828678523720187909,gret menc giur espert sanrem ,[] ,negative
+828678567659724801,rend cont ,[], positive
+828678735297642498,raccom ditem gret menc cul entrar spettacol ,[] ,negative
+828678883385950209,ascolt canzon entra test esce sapevatel ,[], positive
+828679086037942272,risalt ancor ,['__EMOT_POS'], positive
+828679320168173569,guard sanrem menc ,[], negative
+828679358915166209,schif schif schif ,[], negative
+828679396944904193,vol smett accus gret chiam giur dov declin ,[] ,negative
+828679564859736064,"hashtag divent genitor next week,hann ",[], neutral
+828679662758932481,doman videocopertin crozz giornal accredit settimanal cines ,[], neutral
+828679731272884224,tesorin fatt val spacc cul palc ,['__EMOT_POS'], positive
+828679817457446913,gret menc ,[] ,negative
+828680153660289029,legg ovunqu numer tropp ospit presenz ,[], negative
+828680679600840704,bell legg comment stamp c'e un'opinion buon dirett puntual stroncatur popol ,[], negative
+828680971344019458,torn far ,[], neutral
+828681632890621952,min vinc man bass partecip ospit torn davver ,[], positive
+828681925963476992,siccom cors settiman ciclism bocc lup ,[], positive
+828682068137754624,seguir reportag freg cao ,[], negative
+828682127365591041,avvis tutta:d doman twitter scriver nuov propost membr giur prem enzo jannacc ,[], neutral
+828682173389688834,pazz ,[], positive
+828682539313291265,gret menc far giur espert ,[] , negative
+828682800555503617,bravissim innovativissim acquist l'hashtag spettacol ,[], positive
+828683292249616389,stra agit doman emozion ved sal palc neanc dovess cant aiut ,[], positive
+828683430317719557,lod tess ser ,['__EMOT_POS'], positive
+828683465822466048,espert musical trump president americ manc cipollar ministre complet team insomm ,[], negative
+828683517181755392,gran final countdown final ,[], positive
+828683654192824320,gret menc giudic l'ital med ,[] ,negative
+828684150693564416,fortun c'e cor ,[], positive
+828684256801079300,gret menc cant gioi ugual ,[] ,negative
+828684454185095168,larg giovan conosc pregiudiz condann scelt giur ,[], negative
+828684902279299074,bellezz ,[], positive
+828685017257799681,artist verrann giudic popol ital ,[], negative
+828685314931716098,canzon piac ,[], positive
+828685364009238529,giudic sanrem ved malgiogl giudic concors miss magliett bagn ,[], negative
+828685871998173184,amor ,[], positive
+828686226555338752,canzon piac ,[], positive
+828686869990952962,canzon piac ,[], positive
+828686985246154757,divert god quest'esperit massim viv emozion spacc sai ,['__EMOT_NEUT'], positive
+828687412436017152,stor clementin elod ,['__EMOT_POS'], positive
+828687767999754243,trasform carl cont portac far cap comand ,[],neutral
+828687802271424512,canzon piac ,[], positive
+828688014868111360,prontissim ,['__EMOT_POS'], positive
+828688105049817089,poliziott sergent mor comell ,['__EMOT_POS'],positive
+828688443072987137,uscir album ,[], neutral
