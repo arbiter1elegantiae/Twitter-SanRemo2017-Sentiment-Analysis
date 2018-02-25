@@ -96,12 +96,30 @@ def buildClassificationVector(dfClassified):
     return (np.array(classificationColumn))
 
 
+def testDataCreator(df, dfClassified):
 
+# This function creates a new DataFrame with not classified examples 
+    classifiedID = []
+    dfTest = pd.DataFrame(columns = ['id','tweet_text','emoji'])
+
+    for element in dfClassified.itertuples():
+
+        classifiedID.append(element.id)
+    
+    for tweet in df.itertuples():
+    
+        if(tweet.id not in classifiedID):
+
+            dfTest = dfTest.append({'id': tweet.id, 'tweet_text': tweet.tweet_text, 'emoji': tweet.emoji}, ignore_index = True)
+    
+    return dfTest
 
 stemmer = SnowballStemmer("italian")
 
 df = pd.read_csv('./cleanedData.tsv')
 dfClassified = pd.read_csv('./classified.tsv')
+dfTestSet = testDataCreator(df, dfClassified)
+
 
 dfNeg = pd.read_csv('./lexicon/neg.words.txt',header=None,names=['word'])
 dfPos = pd.read_csv('./lexicon/pos.words.txt',header=None,names=['word'])
@@ -112,26 +130,38 @@ bowFitter = gramVectorizer.fit(df['tweet_text'].values.astype(str))
 # build dataset features vectors
 DataSBowTransformer = bowFitter.transform(df['tweet_text'].values.astype(str))
 DataSFeaturesVecTmp = DataSBowTransformer.toarray()
-
 #print(DataSFeaturesVecTmp)
-DataSNegPolarityFeat=buildNegPolarityFeat(df, dfNeg)
-DataSPosPolarityFeat=buildPosPolarityFeat(df, dfPos)
-DataSEmojiPolarityFeat=buildEmojiPolarity(df)
-
-#print(negPolarityFeat.shape, posPolarityFeat.shape, emojiPolarityFeat.shape)
-DataSFeaturesVec=np.c_[DataSfeaturesVecTmp, DataSNegPolarityFeat, DataSPosPolarityFeat, DataSEmojiPolarityFeat]
-#print(DataSFeaturesVec)
-
 
 # build training set features vectors
 TrainSBowTransformer = bowFitter.transform(dfClassified['tweet_text'].values.astype(str))
 TrainSFeaturesVecTmp = TrainSBowTransformer.toarray()
 
+# build test set feature vectors 
+TestSBowTransformer = bowFitter.transform(dfTestSet['tweet_text'].values.astype(str))
+TestSFeaturesVecTmp = TestSBowTransformer.toarray()
+
+#Build polarity for Data set 
+DataSNegPolarityFeat=buildNegPolarityFeat(df, dfNeg)
+DataSPosPolarityFeat=buildPosPolarityFeat(df, dfPos)
+DataSEmojiPolarityFeat=buildEmojiPolarity(df)
+
+#Build polarity for Test set
+TestSNegPolarityFeat = buildNegPolarityFeat(dfTestSet, dfNeg)
+TestsPosPolarityFeat = buildPosPolarityFeat(dfTestSet, dfPos)
+TestSEmojiPolarityFeat = buildEmojiPolarity(dfTestSet)
+
+#Build polarity for train set
 TrainSNegPolarityFeat=buildNegPolarityFeat(dfClassified, dfNeg)
 TrainSPosPolarityFeat=buildPosPolarityFeat(dfClassified, dfPos)
 TrainSEmojiPolarityFeat=buildEmojiPolarity(dfClassified)
 classificationFeat = buildClassificationVector(dfClassified)
 
+#print(negPolarityFeat.shape, posPolarityFeat.shape, emojiPolarityFeat.shape)
+DataSFeaturesVec=np.c_[DataSFeaturesVecTmp, DataSNegPolarityFeat, DataSPosPolarityFeat, DataSEmojiPolarityFeat]
 TrainSFeaturesVec=np.c_[TrainSFeaturesVecTmp,TrainSNegPolarityFeat,TrainSPosPolarityFeat,TrainSEmojiPolarityFeat,classificationFeat]
-print(TrainSFeaturesVec.shape)
-print(TrainSFeaturesVec)
+TestSFeaturesVec = np.c_[TestSFeaturesVecTmp, TestSNegPolarityFeat, TestSPosPolarityFeat, TestSEmojiPolarityFeat]
+
+
+# print(DataSFeaturesVec)
+# print(TrainSFeaturesVec)
+# print(TestSFeaturesVec)
