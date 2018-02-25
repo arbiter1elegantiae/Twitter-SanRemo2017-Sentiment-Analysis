@@ -4,6 +4,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from nltk import stem
 from nltk.stem.snowball import SnowballStemmer
 
+np.set_printoptions(threshold=np.inf)
 
 
 
@@ -25,8 +26,8 @@ def buildNegPolarityFeat(df, dfNeg):
                 if stem in tweetList:
                     negPolarity += 1
                 oldStem = stem
-        #round negative polarity of the tweet to the closest multiple of 5
-        print('NEGFeature'+str(tweet[0])+'-->'+str(int(5 * round(float(negPolarity)/5)))) #print work in progress
+        #round negative polarity of the tweet to the closest multiple of 3
+        print('NEGFeature'+str(tweet[0])+'-->'+str(int(3 * round(float(negPolarity)/3)))) #print work in progress
         negColumn.append(int(3 * round(float(negPolarity)/3)))
     
     
@@ -53,7 +54,7 @@ def buildPosPolarityFeat(df, dfPos):
                 if stem in tweetList:
                     posPolarity += 1
                 oldStem = stem
-        #round positive polarity of the tweet to the closest multiple of 5
+        #round positive polarity of the tweet to the closest multiple of 3
         print('POSFeature'+str(tweet[0])+'-->'+str(int(3 * round(float(posPolarity)/3)))) #print work in progress
         posColumn.append(int(3 * round(float(posPolarity)/3)))
 
@@ -80,21 +81,18 @@ def buildEmojiPolarity(df):
     return np.array(emojiColumn)
 
 
-def buildClassificationVector(df, dfClassified):
+def buildClassificationVector(dfClassified):
     classificationColumn=[]
-
-    for tweet in df.itertuples(index=False):
-
-        for classifiedTweet in dfClassified.itertuples(index=False):
-
-            if (tweet[0] == classifiedTweet[0]):
-                if (classifiedTweet[3] == 'negative'):
-                    classificationColumn.append((classifiedTweet[0], -1))
-                if (classifiedTweet[3] == 'neutral'):
-                    classificationColumn.append((classifiedTweet[0], 0))
-                if (classifiedTweet[3] == 'positive'):
-                    classificationColumn.append((classifiedTweet[0], 1))    
-
+    
+    for classifiedTweet in dfClassified.itertuples(index=False):
+        print(classifiedTweet)
+        if (classifiedTweet[3] == 'negative'):
+            classificationColumn.append(-1)
+        elif (classifiedTweet[3] == 'neutral'):
+            classificationColumn.append(0)
+        else:
+            classificationColumn.append(1)    
+    
     return (np.array(classificationColumn))
 
 
@@ -109,19 +107,31 @@ dfNeg = pd.read_csv('./lexicon/neg.words.txt',header=None,names=['word'])
 dfPos = pd.read_csv('./lexicon/pos.words.txt',header=None,names=['word'])
 
 gramVectorizer = CountVectorizer(min_df=5, ngram_range=(1, 1))
-bowTransformer = gramVectorizer.fit_transform(df['tweet_text'].values.astype(str))
+bowFitter = gramVectorizer.fit(df['tweet_text'].values.astype(str))
 
-featuresVecTmp = bowTransformer.toarray()
+# build dataset features vectors
+DataSBowTransformer = bowFitter.transform(df['tweet_text'].values.astype(str))
+DataSFeaturesVecTmp = DataSBowTransformer.toarray()
 
-negPolarityFeat=buildNegPolarityFeat(df, dfNeg)
-posPolarityFeat=buildPosPolarityFeat(df, dfPos)
-emojiPolarityFeat=buildEmojiPolarity(df)
-classificationFeat = buildClassificationVector(df, dfClassified)
+#print(DataSFeaturesVecTmp)
+DataSNegPolarityFeat=buildNegPolarityFeat(df, dfNeg)
+DataSPosPolarityFeat=buildPosPolarityFeat(df, dfPos)
+DataSEmojiPolarityFeat=buildEmojiPolarity(df)
 
-print(negPolarityFeat.shape, posPolarityFeat.shape, emojiPolarityFeat.shape)
-print(classificationFeat.shape)
-print(classificationFeat)
-featuresVec=np.c_[featuresVecTmp, negPolarityFeat, posPolarityFeat, emojiPolarityFeat]
+#print(negPolarityFeat.shape, posPolarityFeat.shape, emojiPolarityFeat.shape)
+DataSFeaturesVec=np.c_[DataSfeaturesVecTmp, DataSNegPolarityFeat, DataSPosPolarityFeat, DataSEmojiPolarityFeat]
+#print(DataSFeaturesVec)
 
 
-print(featuresVec)
+# build training set features vectors
+TrainSBowTransformer = bowFitter.transform(dfClassified['tweet_text'].values.astype(str))
+TrainSFeaturesVecTmp = TrainSBowTransformer.toarray()
+
+TrainSNegPolarityFeat=buildNegPolarityFeat(dfClassified, dfNeg)
+TrainSPosPolarityFeat=buildPosPolarityFeat(dfClassified, dfPos)
+TrainSEmojiPolarityFeat=buildEmojiPolarity(dfClassified)
+classificationFeat = buildClassificationVector(dfClassified)
+
+TrainSFeaturesVec=np.c_[TrainSFeaturesVecTmp,TrainSNegPolarityFeat,TrainSPosPolarityFeat,TrainSEmojiPolarityFeat,classificationFeat]
+print(TrainSFeaturesVec.shape)
+print(TrainSFeaturesVec)
