@@ -85,7 +85,7 @@ def buildClassificationVector(dfClassified):
     classificationColumn=[]
     
     for classifiedTweet in dfClassified.itertuples(index=False):
-        print(classifiedTweet)
+        
         if (classifiedTweet[3] == 'negative'):
             classificationColumn.append(-1)
         elif (classifiedTweet[3] == 'neutral'):
