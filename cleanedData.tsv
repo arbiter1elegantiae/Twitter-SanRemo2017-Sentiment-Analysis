@@ -1,4 +1,4 @@
-'id','tweet_text','emoji'
+id,tweet_text,emoji
 826126383214653440,pagin parl ,[]
 826127813124247552,bell song ball tranquill ,[]
 826131384024563714,mission elimin pregiudiz confront riuscir ,[]
@@ -1399,3 +1399,4 @@
 828688105049817089,poliziott sergent mor comell ,['__EMOT_POS']
 828688443072987137,uscir album ,[]
 828688628759089152,l'hashtag garant approfond liv segu ,['__EMOT_POS']
+ 

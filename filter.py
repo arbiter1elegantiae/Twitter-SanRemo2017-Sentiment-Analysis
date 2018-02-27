@@ -7,8 +7,9 @@ import unicodedata
 import string
 import re
 import json
+from collections import OrderedDict
 import requests
-from unidecode import unidecode 
+from unidecode import unidecode
 from emoji.unicode_codes import UNICODE_EMOJI
 from lxml import html
 from nltk import stem
@@ -28,7 +29,7 @@ stemmer = SnowballStemmer("italian")
 # stopWordSet = set(json.load('stopWords.json'))
 
 def findParticipantsTweets(df):
-    
+
     participantsDF = pd.DataFrame(columns=fNames)
 
     for tweet in df.itertuples():
@@ -36,11 +37,11 @@ def findParticipantsTweets(df):
         for word in tweet[3].split():
 
             if (word.lower() in nomiPartecipanti):
-                
+
                 tweet_text = clean(tweet.singers)
-                participantsDF = participantsDF.append({'tweet_id_str': tweet.tweet_id_str,'tweet_text': tweet_text, 'singers': word}, ignore_index=True)
-    
-    participantsDF.to_csv('participants.tsv')    
+                participantsDF = participantsDF.append({'tweet_id_str': tweet.tweet_id_str,'tweet_text': tweet_text, 'singers': word.lower()}, ignore_index=True)
+
+    participantsDF.to_csv('participants.tsv')
     print(participantsDF)
 
     print(tweet.singers)
@@ -58,7 +59,7 @@ def demojify(txt):
             replaced = unidecode(str(character))
             if replaced != '':
                 returnString += replaced
-            else: 
+            else:
                 try:
                     returnString = returnString
                 except ValueError:
@@ -92,7 +93,7 @@ def removeStopWords(txt):
 
 
 def removeNumbers(txt):
-    # remove all the numbers 
+    # remove all the numbers
     resulTxt=''
     for word in txt:
         resulTxt+=''.join([i for i in word if not i.isdigit()])
@@ -106,7 +107,7 @@ def removeOneorTwo(txt):
 
 
 def stemmatize(txt):
-    
+
     returnString = ""
     for word in txt.split():
         returnString += stemmer.stem(word) + " "
@@ -123,10 +124,10 @@ if __name__ == "__main__":
         with open('partecipanti.json') as jsonDataPartecipanti:
             nomiPartecipanti = set(json.load(jsonDataPartecipanti))
 
+
         with open('stopWords.json') as jsonData:
             stopWordSet = set(json.load(jsonData))
-            
-        df = pd.read_table('sanremo-2017-0.1.tsv',header=None,usecols=fields,names=fNames,dtype={fields[0]:'object', fields[1]:'object', fields[2]:'object'}, nrows = 4000)
+
+
+        df = pd.read_table('./Dataset_and_details/sanremo-2017-0.1.tsv',header=None,usecols=fields,names=fNames,dtype={fields[0]:'object', fields[1]:'object', fields[2]:'object'}, nrows = 213823)
         findParticipantsTweets(df)
-
-
