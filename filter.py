@@ -34,7 +34,7 @@ def findParticipantsTweets(df):
     participantsDF.to_csv('participants.tsv')    
     print(participantsDF)
 
-    
+    print(tweet.singers)
 
 if __name__ == "__main__":
 
