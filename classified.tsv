@@ -15,7 +15,7 @@ id,tweet_text,emoji,classification
 826766515882119169,edicol dedic ,[] ,neutral
 826773080223662081,ved l'or scopr look ,['__EMOT_POS'] ,positive
 826777657048178688,pres numer imperd ,['__EMOT_POS'] ,positive
-826782664191516672,manc pront ,"['__EMOT_POS', '__EMOT_NEUT']" ,neutral
+826782664191516672,manc pront ,"['__EMOT_POS', '__EMOT_NEUT'] ",neutral
 826789573330141184,pront andar bancarott ,['__EMOT_POS'] ,positive
 826791460011917312,emozion ved l'or ,['__EMOT_POS'] ,positive
 826791712030855168,abruzzes pront ,['__EMOT_POS'] ,positive
@@ -298,4 +298,28 @@ id,tweet_text,emoji,classification
 828687802271424512,canzon piac ,[], positive
 828688014868111360,prontissim ,['__EMOT_POS'], positive
 828688105049817089,poliziott sergent mor comell ,['__EMOT_POS'],positive
-828688443072987137,uscir album ,[], neutral
+829064770129117184,vabb fic ,[],positive
+829061433501560833,tiz ferr apre splendid iniz ricord carlett gioc l'ass ,[],positive
+828478563036889088,stamattin sembr zomb arriv viv settiman ,[],negative
+829059520395673600,ricord vessicc l'avre mess ,[],negative
+829061701035229185,iniz tiz ferr ,['__EMOT_POS'],positive
+829066226068500480,mar scalin insepar ,[],neutral
+829055481205424129,staser scegl serv arriv programm qual ,[],positive
+828985113392316417,festival ,[],positive
+828274755396653057,ver sanrem ,[],neutral
+829057717839003648,"parole"",m minim manca""per vita""tr canzon famos sanrem ",['__EMOT_POS'],negative
+829058626459467777,manc michel segu ,[],positive
+829066411515531264,scalin protes natural ,[],neutral
+829063389548859392,giusy ferrer cass min raccogl ,[],neutral
+829061936696393730,tiz l'omagg tenc ,[],positive
+829063950104944641,rag aless michel aiut amor ,[],positive
+826408270688550917,ador elod mannoi test bell ved l'or sent ,[],positive
+829057409746350080,ved troion biond mett gif lanc telef ,['__EMOT_POS'],negative
+828891462993575936,mattin febbr ser disgraz veng sol ,['__EMOT_NEG'],negative
+829066452347056128,tem averl sent tip ,[],neutral
+826482941169635333,campion aless bernabe ,['__EMOT_POS'],positive
+829061538900279299,tiz ferr ,[],neutral
+827552377175678976,bell lodov ,[],positive
+828989323928297472,serv rappresent giovani. pot felic test alta regin ,[],positive
+826150433756430337,vogl festival ,[],neutral
+829066354623918080,vabb raul esci zitt ,[],negative
