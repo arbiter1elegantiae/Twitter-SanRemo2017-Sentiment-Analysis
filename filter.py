@@ -33,19 +33,40 @@ def findParticipantsTweets(df):
     participantsDF = pd.DataFrame(columns=fNames)
 
     for tweet in df.itertuples():
+        
+        a,b,c,d,e,f = tweet.tweet_text.split(' ',6)
+        newString = ''
+        visited = []
 
-        for word in tweet[3].split():
+        tweet_mentions = handleMentions(tweet.singers)
+        tweet_hashtags = handleHashtag(tweet.singers)
 
-            if (word.lower() in nomiPartecipanti):
+        for at in tweet_mentions:
+                
+                tmpString = ''
+                resultAt = str(mentionsToName(at))
+    
+                if (resultAt != ''):
+                   tmpString = resultAt
+                   newString =  tweet[3] + tmpString
 
+        for hashtag in tweet_hashtags:
+
+                resultHash = str(hashtagToName(hashtag))
+
+                if (resultHash != ''):
+                    newString = newString + tweet[3] + resultHash        
+
+        for word in newString.split():
+        
+            if (word.lower() in nomiPartecipanti and word.lower() not in visited):
+                visited.append(word.lower())
                 tweet_text = clean(tweet.singers)
                 participantsDF = participantsDF.append({'tweet_id_str': tweet.tweet_id_str,'tweet_text': tweet_text, 'singers': word.lower()}, ignore_index=True)
+                
 
     participantsDF.to_csv('participants.tsv')
     print(participantsDF)
-
-    print(tweet.singers)
-
 
 def demojify(txt):
     # remove emoji from tweet
@@ -118,6 +139,115 @@ def clean(txt):
     # apply all previous defined filters
     return stemmatize(removeAddSpace(removeOneorTwo(removeStopWords(removeNumbers((replaceTwOrMore(removePunc(p.clean(demojify(txt))).lower())))))))
 
+def handleHashtag(txt):
+    # finds all hashtags in the tweet and removes #
+    hashtags = re.findall(r"#(\w+)", txt)
+    return hashtags
+
+def handleMentions(txt):
+   # finds all mentions in the tweet and removes @
+   mentions = re.findall(r"@(\w+)", txt)
+   return mentions 
+
+def mentionsToName(txt):
+    
+    if(txt.lower() == 'frankgabbani'):
+        return 'gabbani'
+    elif (txt.lower() == 'lodocomello'):
+        return 'comello'
+    elif (txt.lower() == 'roncellamare'):
+        return 'ron'
+    elif (txt.lower() == 'fabriziomorooff'):
+        return 'moro'
+    elif (txt.lower() == 'metaermal'):
+        return 'meta'
+    elif (txt.lower() == 'fiorellamannoia'):
+        return 'mannoia'
+    elif (txt.lower() == 'michele_bravi'):
+        return 'bravi'
+    elif (txt.lower() == 'paolaturci'):
+        return 'turci'
+    elif (txt.lower() == 'sergiosylvestre'):
+        return 'sylvestre'
+    elif (txt.lower() == 'elodiedipa'):
+        return 'elodie'
+    elif (txt.lower() == 'biancaatzei'):
+        return 'atzei'
+    elif (txt.lower() == 'samuelofficial'):
+        return 'samuel'
+    elif (txt.lower() == 'michelezarrillo'):
+        return 'zarrillo'
+    elif (txt.lower() == 'marcomasini64'):
+        return 'masini'
+    elif (txt.lower() == 'chiara_galiazzo'):
+        return 'chiara'
+    elif (txt.lower() == 'alessiobernabei'):
+        return 'bernabei'
+    elif (txt.lower() == 'clementinoiena'):
+        return 'clementino'
+    elif (txt.lower() == '_gigidalessio_'):
+        return "d'alessio"
+    elif (txt.lower() == 'giusyferreri'):
+        return 'ferreri'
+    elif (txt.lower() == 'neslimusic'):
+        return 'nesli'
+    elif (txt.lower() == 'alice_paba'):
+        return 'nesli'
+    elif (txt.lower() == 'raigeofficial'):
+        return 'raige'
+    elif (txt.lower() == 'giulia_luzi'):
+        return 'raige'
+
+def hashtagToName(txt):
+
+    if ('comello' in txt):
+        return 'comello'
+    elif ('gabbani' in txt):
+        return 'gabbani'
+    elif ('ron' in txt):
+        return 'ron'
+    elif ('moro' in txt):
+        return 'moro'
+    elif ('meta' in txt):
+        return 'meta'
+    elif ('mannoia' in txt):
+        return 'mannoia'
+    elif ('turci' in txt):
+        return 'turci'
+    elif ('bravi' in txt):
+        return 'bravi'
+    elif ('clementino' in txt):
+        return 'clementino'
+    elif ('sylvestre' in txt):
+        return 'sylvestre'
+    elif ('elodie' in txt):
+        return 'elodie'
+    elif ('atzei' in txt):
+        return 'atzei'
+    elif ('zarrillo' in txt):
+        return 'zarrillo'
+    elif ('chiara' in txt):
+        return 'chiara'
+    elif ('samuel' in txt):
+        return 'samuel'
+    elif ('masini' in txt):
+        return 'masini'
+    elif ('bernabei' in txt):
+        return 'bernabei'
+    elif ('gigi' in txt):
+        return "d'alessio"
+    elif ('ferreri' in txt):
+        return 'ferreri'
+    elif ('nesli' in txt):
+        return 'nesli'
+    elif ('paba' in txt):
+        return 'nesli'
+    elif ('raige' in txt):
+        return 'raige'
+    elif ('luzi' in txt):
+        return 'raige'
+    
+    
 
 if __name__ == "__main__":
 
@@ -129,5 +259,5 @@ if __name__ == "__main__":
             stopWordSet = set(json.load(jsonData))
 
 
-        df = pd.read_table('./Dataset_and_details/sanremo-2017-0.1.tsv',header=None,usecols=fields,names=fNames,dtype={fields[0]:'object', fields[1]:'object', fields[2]:'object'}, nrows = 213823)
+        df = pd.read_table('./Dataset_and_details/sanremo-2017-0.1.tsv',header=None,usecols=fields,names=fNames,dtype={fields[0]:'object', fields[1]:'object', fields[2]:'object'}, nrows = 250000)
         findParticipantsTweets(df)
