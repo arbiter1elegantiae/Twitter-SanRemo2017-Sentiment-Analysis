@@ -1,5 +1,4 @@
 import pandas as pd 
-import numpy as np 
 import random
 
 
@@ -15,8 +14,8 @@ fNames = ['tweet_id_str','tweet_created_at','tweet_text','tweet_source','tweet_h
            'user_url','user_followers_count','user_friends_count','user_created_at','user_statuses_count',
            'user_profile_image_url','user_location','tweet_lang','tweet_favorite_count','tweet_retweet_count']
 
-dfClean = pd.read_csv('../cleanedData.tsv')
-df = pd.read_table('../sanremo-2017-0.1.tsv',header=None,usecols=fields,names=fNames,dtype={fields[0]:'object', fields[1]:'object', fields[2]:'object'})
+dfClean = pd.read_csv('./cleanedData.tsv')
+df = pd.read_table('./sanremo-2017-0.1.tsv',header=None,usecols=fields,names=fNames,dtype={fields[0]:'object', fields[1]:'object', fields[2]:'object'})
 
 dfClassified = pd.read_csv('./classified.tsv', index_col=0)
 while True:

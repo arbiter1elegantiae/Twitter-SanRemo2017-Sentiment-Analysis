@@ -1,153 +1,30 @@
-from __future__ import print_function
 import pandas as pd
-import preprocessor as p
 import numpy as np
-import sys
-import unicodedata
-import string
 import re
 import json
-from collections import OrderedDict
-import requests
-from unidecode import unidecode
-from emoji.unicode_codes import UNICODE_EMOJI
-from lxml import html
-from nltk import stem
-from nltk.stem.snowball import SnowballStemmer
+
+import dataPreproc as dpp
 
 
 
-fNames = ['tweet_id_str','tweet_text', 'singers']
+newFields = ['id','tweet_text','emoji','singers']
+columns = ['tweet_id_str', 'tweet_text', 'tweet_created_at']
 
-fields = fNames
+dpp.classifyEmoji()
 
-dfCleaned = pd.read_table('./cleanedData.tsv')
-dfClassified = pd.read_table('./classified.tsv')
-
-stemmer = SnowballStemmer("italian")
-
-# stopWordSet = set(json.load('stopWords.json'))
-
-def findParticipantsTweets(df):
-
-    participantsDF = pd.DataFrame(columns=fNames)
-
-    for tweet in df.itertuples():
-        
-        a,b,c,d,e,f = tweet.tweet_text.split(' ',6)
-        newString = ''
-        visited = []
-
-        tweet_mentions = handleMentions(tweet.singers)
-        tweet_hashtags = handleHashtag(tweet.singers)
-
-        for at in tweet_mentions:
-                
-                tmpString = ''
-                resultAt = str(mentionsToName(at))
-    
-                if (resultAt != ''):
-                   tmpString = resultAt
-                   newString =  tweet[3] + tmpString
-
-        for hashtag in tweet_hashtags:
-
-                resultHash = str(hashtagToName(hashtag))
-
-                if (resultHash != ''):
-                    newString = newString + tweet[3] + resultHash        
-
-        for word in newString.split():
-        
-            if (word.lower() in nomiPartecipanti and word.lower() not in visited):
-                visited.append(word.lower())
-                tweet_text = clean(tweet.singers)
-                participantsDF = participantsDF.append({'tweet_id_str': tweet.tweet_id_str,'tweet_text': tweet_text, 'singers': word.lower()}, ignore_index=True)
-                
-
-    participantsDF.to_csv('participants.tsv')
-    print(participantsDF)
-
-def demojify(txt):
-    # remove emoji from tweet
-    returnString = ""
-
-    for character in txt:
-        try:
-            character.encode("ascii")
-            returnString += character
-        except UnicodeEncodeError:
-            replaced = unidecode(str(character))
-            if replaced != '':
-                returnString += replaced
-            else:
-                try:
-                    returnString = returnString
-                except ValueError:
-                    returnString += '[x]'
-    return returnString
+def handleMentions(txt):
+   # finds all mentions in the tweet and removes @
+   mentions = re.findall(r"@(\w+)", txt)
+   return mentions
 
 
-def removePunc(txt):
-    # remove punctuation
-    return ''.join([word.strip(string.punctuation)+' ' for word in txt.split(" ")])
-
-
-
-def replaceTwOrMore(txt):
-    # look for 2 or more repetitions of character and replace with the character itself
-    pattern = re.compile(r"(.)\1{1,}", re.DOTALL)
-    return pattern.sub(r"\1\1", txt)
-
-
-
-def removeAddSpace(txt):
-    # Remove additional white spaces
-    return re.sub('[\s]+', ' ', txt)
-
-
-
-def removeStopWords(txt):
-    # remove stop words taken from the json file
-    return ''.join([word+' ' for word in txt.split() if word not in stopWordSet])
-
-
-
-def removeNumbers(txt):
-    # remove all the numbers
-    resulTxt=''
-    for word in txt:
-        resulTxt+=''.join([i for i in word if not i.isdigit()])
-    return resulTxt
-
-
-
-def removeOneorTwo(txt):
-    # remove every one-two characters word
-    return ''.join([word+' ' for word in txt.split() if len(word)>2 ])
-
-
-def stemmatize(txt):
-
-    returnString = ""
-    for word in txt.split():
-        returnString += stemmer.stem(word) + " "
-    return returnString
-
-
-def clean(txt):
-    # apply all previous defined filters
-    return stemmatize(removeAddSpace(removeOneorTwo(removeStopWords(removeNumbers((replaceTwOrMore(removePunc(p.clean(demojify(txt))).lower())))))))
 
 def handleHashtag(txt):
     # finds all hashtags in the tweet and removes #
     hashtags = re.findall(r"#(\w+)", txt)
     return hashtags
 
-def handleMentions(txt):
-   # finds all mentions in the tweet and removes @
-   mentions = re.findall(r"@(\w+)", txt)
-   return mentions 
+
 
 def mentionsToName(txt):
     
@@ -192,14 +69,18 @@ def mentionsToName(txt):
     elif (txt.lower() == 'neslimusic'):
         return 'nesli'
     elif (txt.lower() == 'alice_paba'):
-        return 'nesli'
+        return 'paba'
     elif (txt.lower() == 'raigeofficial'):
         return 'raige'
     elif (txt.lower() == 'giulia_luzi'):
-        return 'raige'
+        return 'luzi'
+    else:
+         return ''
+    
+
 
 def hashtagToName(txt):
-
+    
     if ('comello' in txt):
         return 'comello'
     elif ('gabbani' in txt):
@@ -241,23 +122,51 @@ def hashtagToName(txt):
     elif ('nesli' in txt):
         return 'nesli'
     elif ('paba' in txt):
-        return 'nesli'
+        return 'paba'
     elif ('raige' in txt):
         return 'raige'
     elif ('luzi' in txt):
-        return 'raige'
-    
-    
+        return 'luzi'
+    else:
+        return ''
 
-if __name__ == "__main__":
+def findParticipantsTweets(df1):
+   
+   participantsDF = pd.DataFrame(columns=newFields)
+   i = 0
+   for tweet in df1.itertuples():
+        
+        if (int(tweet.tweet_id_str) < 830576620465430528): #last tweet before prizegiving
+           
+            tweet_mentions = handleMentions(tweet.tweet_text)
+            tweet_hashtags = handleHashtag(tweet.tweet_text) 
+            visited = []
+            ats=''
+            hashtags=''
 
-        with open('partecipanti.json') as jsonDataPartecipanti:
+            for at in tweet_mentions:
+                ats += ' '+str(mentionsToName(at.lower())) if not '' else  ''
+                
+            for hashtag in tweet_hashtags:
+                hashtags += str(hashtagToName(hashtag.lower())) if not '' else ''
+
+            newString = hashtags+ ' ' + ats + ' '+tweet.tweet_text 
+
+        for word in newString.split():
+            
+                if (word.lower() in nomiPartecipanti and word.lower() not in visited):
+                    visited.append(word.lower())
+                    tweet_text = dpp.clean(tweet.tweet_text)
+                    participantsDF = participantsDF.append({'id': tweet.tweet_id_str,'tweet_text': tweet_text,'emoji' : dpp.emojiFind(tweet.tweet_text),'singers': word.lower()}, ignore_index=True)
+                    
+   participantsDF.to_csv('participants.tsv', index=False)
+   
+         
+
+with open('partecipanti.json') as jsonDataPartecipanti:
             nomiPartecipanti = set(json.load(jsonDataPartecipanti))
 
+df = pd.read_table('./sanremo-2017-0.1.tsv',header=None,usecols=columns,names=dpp.fNames)
+df1 = df.iloc[1:] 
 
-        with open('stopWords.json') as jsonData:
-            stopWordSet = set(json.load(jsonData))
-
-
-        df = pd.read_table('./Dataset_and_details/sanremo-2017-0.1.tsv',header=None,usecols=fields,names=fNames,dtype={fields[0]:'object', fields[1]:'object', fields[2]:'object'}, nrows = 250000)
-        findParticipantsTweets(df)
+findParticipantsTweets(df1)

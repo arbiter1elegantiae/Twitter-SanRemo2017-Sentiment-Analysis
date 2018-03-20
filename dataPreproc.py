@@ -69,6 +69,10 @@ nrows= 213823
 stemmer = SnowballStemmer("italian")
 
 
+with open('stopWords.json') as jsonData:
+        stopWordSet = set(json.load(jsonData))
+
+
 def process(df):
     # process records extracted from original dataset and store them in clenadedData.csv    
     
@@ -84,7 +88,7 @@ def process(df):
         
         printProgress(i)
 
-    newDf.to_csv('./cleanedData.tsv')
+    return newDf
 
 
 
@@ -255,11 +259,10 @@ def classifyEmoji():
 
 if __name__ == "__main__":
 
-    with open('stopWords.json') as jsonData:
-        stopWordSet = set(json.load(jsonData))
-
     classifyEmoji()
 
-    df = pd.read_table('sanremo-2017-0.1.tsv',header=None,usecols=fields,names=fNames,dtype={fields[0]:'object', fields[1]:'object', fields[2]:'object'}, nrows=1000)
-    process(df)
+    df = pd.read_table('./sanremo-2017-0.1.tsv',header=None,usecols=fields,names=fNames,dtype={fields[0]:'object', fields[1]:'object', fields[2]:'object'})
+    
+    newDf = process(df)
+    newDf.to_csv('./cleanedData.tsv')
 
